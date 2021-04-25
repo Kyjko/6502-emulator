@@ -1,4 +1,5 @@
 #include "cpu.h"
+#include <stdio.h>
 
 void Reset(cpu_s* cpus, mem_s* mems) {
 	cpus->PC = 0xFFFC;
@@ -25,6 +26,8 @@ __byte FetchByte(u32* cycles, cpu_s* cpus, mem_s* mems) {
 	__byte d = mems->memory[cpus->PC];
 	cpus->PC++;
 	(*cycles)--;
+
+	return d;
 }
 
 void Execute(u32 cycles, cpu_s* cpus, mem_s* mems) {
@@ -38,6 +41,14 @@ void Execute(u32 cycles, cpu_s* cpus, mem_s* mems) {
 			cpus->Z = cpus->A == 0;
 			cpus->N = (cpus->A & 0b10000000) > 0;
 		} break;
+		case INS_ADC_IM:
+		{
+			cpus->Z = cpus->A == 0;
+			cpus->N = (cpus->A & 0b10000000) > 0;
+		} break;
+		default: {
+			fprintf(stderr, "instruction %u not handled!", instruction);
+			break;
 		}
 	}
 

@@ -11,5 +11,6 @@ typedef struct mem_s {
 
 u32 MemInit(mem_s* mems);
 void MemDeInit(mem_s* mems);
+void LoadProgram(__byte* program, u32 size, mem_s* mems);
 
 #endif

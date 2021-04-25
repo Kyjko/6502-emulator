@@ -6,12 +6,18 @@
 
 // opcodes
 
+#define INS_ADC_IM 0x69
+#define INS_AND_IM 0x29
+#define INS_ASL_IM 0x0A
+
 #define INS_LDA_IM 0xA9
+#define INS_LDX_IM 0xA2
+#define INS_LDY_IM 0xA0
 
 typedef struct cpu_s {
 	
 	__word PC;	// program counter 
-	__word SP;	// stack ponter
+	__byte SP;	// stack ponter
 
 	__byte A;	// accumulator
 	__byte X;	// index register X

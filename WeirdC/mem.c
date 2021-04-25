@@ -14,3 +14,7 @@ u32 MemInit(mem_s* mems) {
 void MemDeInit(mem_s* mems) {
 	free(mems->memory);
 }
+
+void LoadProgram(__byte* program, u32 size, mem_s* mems) {
+	memcpy(mems->memory + 0xFFFC, program, size);
+}
